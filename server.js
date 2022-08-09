@@ -61,9 +61,16 @@ app.get('/books', (request, response) => {
     }
   });
 });
+
 app.get('/test', (request, response) => {
 
   response.send('test request received')
+
+})
+
+app.get('*', (request, response) => {
+
+  response.send('No requests(end point) !')
 
 })
 
