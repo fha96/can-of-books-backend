@@ -8,6 +8,7 @@ const cors = require('cors');
 const mongoose=require('mongoose');
 const app = express();
 app.use(cors());
+app.use(express.json());
 
 const PORT = process.env.PORT || 4000;
 
@@ -53,17 +54,43 @@ app.get('/books', (request, response) => {
     }
   });
 });
+app.post('/books',createNewBook);
+app.delete('/books/:id',removeBook);
+// /cat/id
+
+function createNewBook(req,res){
+  // console.log(req.body);
+  const {newBook}= req.body;
+  //console.log(newBook);
+
+  const book=new bookModel.Book(newBook);
+    book.save();
+    res.status(201).send(book);
+
+}
+function removeBook(req,res){
+  console.log(req.params.id);
+
+  const id=req.params.id;
+
+  bookModel.Book.findByIdAndDelete(id).then(record=>{
+    res.send(record);
+  }).catch(error=>{
+    console.log(error);
+    res.status(500).send(error.message);
+  })
+}
 
 app.get('/test', (request, response) => {
 
   response.send('test request received')
 
-})
+});
 
 app.get('*', (request, response) => {
 
   response.send('No requests(end point) !')
 
-})
+});
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
