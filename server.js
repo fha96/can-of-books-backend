@@ -14,14 +14,6 @@ const PORT = process.env.PORT || 4000;
 
 mongoose.connect('mongodb://localhost:27017/bookshelf');
 
-// const bookSchema = new mongoose.Schema({
-//   title: String,
-//   decription:String,
-//   status:String
-// });
-
-// const Book = mongoose.model('book', bookSchema);
-
 function seedBooks(){
 
   const cleanCode= new Book({
