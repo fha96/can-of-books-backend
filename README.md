@@ -22,3 +22,13 @@
 
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
+
+Name of feature: __________read data from database______________________
+
+Estimate of time needed to complete: __2___
+
+Start time: __3.50pm___
+
+Finish time: ___7.50__
+
+Actual time needed to complete: __1.30___
