@@ -57,6 +57,7 @@ app.get('/books', (request, response) => {
 app.post('/books',createNewBook);
 app.delete('/books/:id',removeBook);
 // /cat/id
+app.put('/books/:id',updateBook);
 
 function createNewBook(req,res){
   // console.log(req.body);
@@ -81,6 +82,20 @@ function removeBook(req,res){
   })
 }
 
+function updateBook(req,res){
+
+  const id=req.params.id;
+  const {data}=req.body;
+
+  console.log(id,data);
+  bookModel.Book.findByIdAndUpdate(id,data,{new:true}).then(record=>{
+    res.send(record);
+  }).catch(error=>{
+    console.log(error);
+    res.status(500).send(error.message);
+  });
+
+}
 app.get('/test', (request, response) => {
 
   response.send('test request received')
